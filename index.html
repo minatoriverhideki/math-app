@@ -2,87 +2,194 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>テストページ</title>
+  <title>線形代数学習ページ</title>
+
+  <style>
+    body {
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 10px;
+    }
+    h1 {
+      font-size: 28px;
+    }
+    h2 {
+      font-size: 24px;
+    }
+    .problem p {
+      font-size: 18px;
+    }
+    details summary {
+      font-size: 18px;
+    }
+    .nav-buttons {
+      margin-bottom: 20px;
+    }
+    .nav-buttons button {
+      margin-right: 10px;
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  </style>
+
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body>
-  <h1>VS CodeからHTMLテスト！</h1>
-  <p>このページがブラウザに表示されれば成功です！</p>
 
-  <h2>今日の問題</h2>
+  <h1>線形代数学習ページ</h1>
 
-  <div class="problem">
-    <p><strong>問題1：</strong></p>
-    <p>
-      次の行列が直交行列であることを示せ：
-    </p>
-    <p>
-      \[
-      \begin{bmatrix}
-      \cos\theta & -\sin\theta \\
-      \sin\theta & \cos\theta
-      \end{bmatrix}
-      \]
-    </p>
-    <details>
-      <summary>ヒントを見る</summary>
+  <div class="nav-buttons">
+    <button onclick="showChapter('chapter7')">第7章</button>
+    <button onclick="showChapter('chapter8')">第8章</button>
+  </div>
+
+  <!-- 第7章 -->
+  <div id="chapter7">
+    <h2>第7章：内積</h2>
+
+    <div class="problem">
+      <p><strong>問題1：</strong></p>
+      <p>次の行列が直交行列であることを示せ：</p>
       <p>
-        ユニタリ行列と直交行列の定義に従って、次を示す：
+        \[
+        \begin{bmatrix}
+        \cos\theta & -\sin\theta \\
+        \sin\theta & \cos\theta
+        \end{bmatrix}
+        \]
+      </p>
+      <details>
+        <summary>ヒントを見る</summary>
+        <p>ユニタリ行列と直交行列の定義に従って、次を示す：</p>
+        <p>
+          \[
+          U^\top U = E
+          \]
+        </p>
+      </details>
+    </div>
+
+    <div class="problem">
+      <p><strong>問題2：</strong></p>
+      <p>\(\mathbb{R}^3\) の2つのベクトル \( \vec{v}, \vec{w} \) に関するベクトル積について、次の性質 (a), (b) を証明せよ。</p>
+      <p>
+        (a)（交代性）\(\ \vec{v} \times \vec{w} = -(\vec{w} \times \vec{v})\)  
+        <br>
+        (b)（線形性）\(\ (a\vec{v}_1 + b\vec{v}_2) \times \vec{w} = a(\vec{v}_1 \times \vec{w}) + b(\vec{v}_2 \times \vec{w}) \)
+      </p>
+      <details>
+        <summary>ヒントを見る</summary>
+        <ol>
+          <li>ベクトル積（外積）は \(\mathbb{R}^3\) におけるベクトルである。</li>
+          <li>\( \vec{v} = \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} \)、  
+              \( \vec{w} = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix} \) に対して、  
+              外積 \( \vec{v} \times \vec{w} \) は次のように定義される：
+            <br><br>
+            \[
+            \vec{v} \times \vec{w} =
+            \begin{bmatrix}
+            a_2 b_3 - a_3 b_2 \\
+            a_3 b_1 - a_1 b_3 \\
+            a_1 b_2 - a_2 b_1
+            \end{bmatrix}
+            \]
+          </li>
+          <li>外積は記号「\(\times\)」、内積は「\(\cdot\)」で表される。</li>
+        </ol>
+      </details>
+    </div>
+
+    <div class="problem">
+      <p><strong>問題3：</strong></p>
+      <p>\(\mathbb{R}^3\) の標準基底 \(\{\vec{e}_1, \vec{e}_2, \vec{e}_3\}\) に対して、次の等式を証明せよ。</p>
+      <p>
+        \[
+        \vec{e}_1 \times \vec{e}_2 = \vec{e}_3,\quad
+        \vec{e}_2 \times \vec{e}_3 = \vec{e}_1,\quad
+        \vec{e}_3 \times \vec{e}_1 = \vec{e}_2
+        \]
+      </p>
+    </div>
+
+  </div>
+
+  <!-- 第8章 -->
+  <div id="chapter8" style="display:none;">
+    <h2>第8章：固有値問題と行列の対角化</h2>
+
+    <div class="problem">
+      <p><strong>問題1：</strong></p>
+      <p>
+        \(V\) を \(K\) 上のベクトル空間とし、\(\varphi: V \to V\) を \(V\) の一次変換とする。
+        \(K\) のスカラー \(\lambda\) について、\(V\) の部分集合 \(W_\lambda\) を
+        \[
+        W_\lambda = \{ v \in V \mid \varphi(v) = \lambda v \}
+        \]
+        で定めるとき、\(W_\lambda\) は \(V\) の部分空間であることを示せ。
+      </p>
+      <details>
+        <summary>ヒントを見る</summary>
+        <p>部分空間であることを示すには、次の3つを確かめればよい：</p>
+        <ol>
+          <li>\(0 \in W_\lambda\)</li>
+          <li>\(v \in W_\lambda, w \in W_\lambda\) ならば \(v + w \in W_\lambda\)</li>
+          <li>\(v \in W_\lambda\)、\(c \in K\) ならば \(c v \in W_\lambda\)</li>
+        </ol>
+      </details>
+    </div>
+
+    <div class="problem">
+      <p><strong>問題2：</strong></p>
+      <p>
+        \(\lambda\)、\(\mu\) を一次変換 \(\varphi\) の相異なる（\(\lambda \neq \mu\)）固有値とし、
+        \(W_\lambda\)、\(W_\mu\) をそれぞれ、\(\lambda\)、\(\mu\) に対する固有空間とする。
+        このとき、
+        \[
+        W_\lambda \cap W_\mu = \{0\}
+        \]
+        であることを示せ。
+      </p>
+      <details>
+        <summary>ヒントを見る</summary>
+        <p>固有ベクトルの定義に従い、それぞれの固有空間の性質を利用する。</p>
+        <p>特に、同じベクトルが異なる固有値に対応することはないことに注意せよ。</p>
+      </details>
+    </div>
+
+    <div class="problem">
+      <p><strong>問題3：</strong></p>
+      <p>
+        次の行列 \( A \) の固有多項式、固有値を求めよ。  
+        また、それぞれの固有値に対する固有空間の基底を1組求めよ。
       </p>
       <p>
         \[
-        U^\top U = E
+        A =
+        \begin{bmatrix}
+        3 & 1 & 2 \\
+        2 & 4 & 2 \\
+        1 & 1 & 3
+        \end{bmatrix}
         \]
       </p>
-    </details>
+      <details>
+        <summary>ヒントを見る</summary>
+        <p>固有多項式は、\(\det(A - \lambda I) = 0\) を計算することで求める。</p>
+        <p>固有空間は、それぞれの固有値に対して \((A - \lambda I)\vec{x} = \vec{0}\) を解くことで求める。</p>
+      </details>
+    </div>
+
   </div>
-  
- <div class="problem">
-    <p><strong>問題2：</strong></p>
-    <p>
-      \(\mathbb{R}^3\) の2つのベクトル \( \vec{v}, \vec{w} \) に関するベクトル積について、次の性質 (a), (b) を証明せよ。
-    </p>
-    <p>
-      (a)（交代性）\(\ \vec{v} \times \vec{w} = -(\vec{w} \times \vec{v})\)  
-      <br>
-      (b)（線形性）\(\ (a\vec{v}_1 + b\vec{v}_2) \times \vec{w} = a(\vec{v}_1 \times \vec{w}) + b(\vec{v}_2 \times \vec{w}) \)
-    </p>
-    <details>
-      <summary>ヒントを見る</summary>
-      <ol>
-        <li>ベクトル積（外積）は \(\mathbb{R}^3\) におけるベクトルである。</li>
-        <li>
-          \( \vec{v} = \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} \)、  
-          \( \vec{w} = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix} \) に対して、  
-          外積 \( \vec{v} \times \vec{w} \) は次のように定義される：
-          <br><br>
-          \[
-          \vec{v} \times \vec{w} =
-          \begin{bmatrix}
-          a_2 b_3 - a_3 b_2 \\
-          a_3 b_1 - a_1 b_3 \\
-          a_1 b_2 - a_2 b_1
-          \end{bmatrix}
-          \]
-        </li>
-        <li>外積は記号「\(\times\)」、内積は「\(\cdot\)」で表される。</li>
-      </ol>
-    </details>
-  </div>
-  <div class="problem">
-    <p><strong>問題3：</strong></p>
-    <p>
-      \(\mathbb{R}^3\) の標準基底 \(\{\vec{e}_1, \vec{e}_2, \vec{e}_3\}\) に対して、次の等式を証明せよ。
-    </p>
-    <p>
-      \[
-      \vec{e}_1 \times \vec{e}_2 = \vec{e}_3,\quad
-      \vec{e}_2 \times \vec{e}_3 = \vec{e}_1,\quad
-      \vec{e}_3 \times \vec{e}_1 = \vec{e}_2
-      \]
-    </p>
-  </div>
-    
+
+  <script>
+    function showChapter(chapterId) {
+      document.getElementById('chapter7').style.display = 'none';
+      document.getElementById('chapter8').style.display = 'none';
+      document.getElementById(chapterId).style.display = 'block';
+    }
+  </script>
+
 </body>
 </html>
